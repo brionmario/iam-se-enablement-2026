@@ -21,6 +21,6 @@ router.get('/health', (req, res) => {
  */
 router.use('/menu', menuRoutes);
 router.use('/orders', orderRoutes);
-router.use('/unity-rewards', rewardsRoutes);
+router.use('/rewards', rewardsRoutes);
 
 export default router;

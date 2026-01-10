@@ -7,7 +7,7 @@ import {
 
 /**
  * Get Unity Rewards profile for a user
- * @route GET /api/v1/unity-rewards/profile/:userId
+ * @route GET /api/v1/rewards/profile/:userId
  */
 export const getRewardsProfile = (req, res, next) => {
   try {
@@ -33,7 +33,7 @@ export const getRewardsProfile = (req, res, next) => {
 
 /**
  * Get all Unity Rewards members (Admin only)
- * @route GET /api/v1/unity-rewards/members
+ * @route GET /api/v1/rewards/members
  */
 export const getAllMembers = (req, res, next) => {
   try {
@@ -53,7 +53,7 @@ export const getAllMembers = (req, res, next) => {
 
 /**
  * Redeem points
- * @route POST /api/v1/unity-rewards/redeem
+ * @route POST /api/v1/rewards/redeem
  */
 export const redeemPoints = (req, res, next) => {
   try {
@@ -85,7 +85,7 @@ export const redeemPoints = (req, res, next) => {
 
 /**
  * Get Unity Rewards configuration and info
- * @route GET /api/v1/unity-rewards/info
+ * @route GET /api/v1/rewards/info
  */
 export const getRewardsInfo = (req, res, next) => {
   try {

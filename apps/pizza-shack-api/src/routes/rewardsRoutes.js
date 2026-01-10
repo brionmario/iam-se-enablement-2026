@@ -12,7 +12,7 @@ import { authenticate, requireScopes } from '../middleware/auth.js';
 const router = express.Router();
 
 /**
- * @route   GET /api/v1/unity-rewards
+ * @route   GET /api/v1/rewards
  * @desc    Get current user's Unity Rewards data
  * @access  Protected - Requires pizza:read_points scope
  */
@@ -24,7 +24,7 @@ router.get(
 );
 
 /**
- * @route   GET /api/v1/unity-rewards/info
+ * @route   GET /api/v1/rewards/info
  * @desc    Get Unity Rewards program information
  * @access  Protected - Requires pizza:read_points scope
  */
@@ -36,7 +36,7 @@ router.get(
 );
 
 /**
- * @route   GET /api/v1/unity-rewards/profile/:userId
+ * @route   GET /api/v1/rewards/profile/:userId
  * @desc    Get user's Unity Rewards profile
  * @access  Protected - Requires pizza:read_points scope
  */
@@ -48,7 +48,7 @@ router.get(
 );
 
 /**
- * @route   GET /api/v1/unity-rewards/members
+ * @route   GET /api/v1/rewards/members
  * @desc    Get all Unity Rewards members (Admin)
  * @access  Protected - Requires pizza:read_points scope
  */
@@ -60,7 +60,7 @@ router.get(
 );
 
 /**
- * @route   POST /api/v1/unity-rewards/redeem
+ * @route   POST /api/v1/rewards/redeem
  * @desc    Redeem Unity points
  * @access  Protected - Requires pizza:update_points scope
  */
