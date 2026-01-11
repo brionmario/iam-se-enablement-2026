@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router';
 import { useAsgardeo } from '@asgardeo/react';
 import Preloader from './components/Preloader';
 import MainLayout from './layouts/MainLayout';
-import MenuPage from './pages/MenuPage';
+import OrdersPage from './pages/OrdersPage';
 import './App.css';
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
     <div className="modern-app">
       <MainLayout>
         <Routes>
-          <Route path="/" element={<MenuPage />} />
+          <Route path="/" element={<OrdersPage />} />
         </Routes>
       </MainLayout>
     </div>
