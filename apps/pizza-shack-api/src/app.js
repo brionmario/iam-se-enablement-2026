@@ -13,8 +13,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const CORS_ORIGIN = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(',')
-  : '';
+  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim())
+  : [];
 const API_VERSION = process.env.API_VERSION || 'v1';
 
 // Security middleware
@@ -23,7 +23,7 @@ app.use(helmet());
 // CORS configuration
 app.use(
   cors({
-    origin: [CORS_ORIGIN, 'http://localhost:5174'],
+    origin: CORS_ORIGIN,
     credentials: true,
   })
 );

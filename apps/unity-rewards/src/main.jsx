@@ -12,7 +12,8 @@ ReactDOM.createRoot(root).render(
     <AsgardeoProvider
       clientId={import.meta.env.VITE_ASGARDEO_CLIENT_ID}
       baseUrl={import.meta.env.VITE_ASGARDEO_BASE_URL}
-      scopes="openid address profile"
+      scopes="openid address profile pizza:read_points pizza:update_points"
+      syncSession={true}
     >
       <App />
     </AsgardeoProvider>

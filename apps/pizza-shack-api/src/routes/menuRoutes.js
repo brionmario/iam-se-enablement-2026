@@ -13,32 +13,22 @@ const router = express.Router();
  * @desc    Get all menu items
  * @query   category - Filter by category
  * @query   available - Filter by availability (true/false)
- * @access  Protected - Requires pizza:read_menu scope
+ * @access  Public
  */
-router.get('/', authenticate, requireScopes('pizza:read_menu'), getMenu);
+router.get('/', getMenu);
 
 /**
  * @route   GET /api/v1/menu/categories
  * @desc    Get all menu categories
- * @access  Protected - Requires pizza:read_menu scope
+ * @access  Public
  */
-router.get(
-  '/categories',
-  authenticate,
-  requireScopes('pizza:read_menu'),
-  getCategories
-);
+router.get('/categories', getCategories);
 
 /**
  * @route   GET /api/v1/menu/:id
  * @desc    Get single menu item by ID
- * @access  Protected - Requires pizza:read_menu scope
+ * @access  Public
  */
-router.get(
-  '/:id',
-  authenticate,
-  requireScopes('pizza:read_menu'),
-  getMenuItemById
-);
+router.get('/:id', getMenuItemById);
 
 export default router;

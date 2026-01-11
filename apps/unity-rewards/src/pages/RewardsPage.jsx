@@ -8,6 +8,7 @@ export default function RewardsPage() {
   const [rewardsData, setRewardsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errorType, setErrorType] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -21,12 +22,35 @@ export default function RewardsPage() {
     try {
       setIsLoading(true);
       setError(null);
+      setErrorType(null);
       const userId = user.sub || user.id || user.userName;
       const response = await getRewards(userId);
       setRewardsData(response.data);
     } catch (err) {
       console.error('Failed to load rewards:', err);
-      setError('Failed to load rewards data');
+
+      // If user is not found in rewards program, show them with 0 points
+      if (
+        err.response?.data?.message?.includes('not found') ||
+        err.response?.status === 404
+      ) {
+        setRewardsData({
+          totalPoints: 0,
+          tier: 'Bronze',
+          recentTransactions: [],
+        });
+      } else if (
+        err.response?.status === 403 ||
+        err.response?.data?.message?.includes('permissions')
+      ) {
+        setErrorType('permission');
+        setError(
+          'You do not have permission to access rewards. Please contact support to request the required permissions.'
+        );
+      } else {
+        setErrorType('general');
+        setError('Failed to load rewards data');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -43,12 +67,20 @@ export default function RewardsPage() {
           </div>
         ) : error ? (
           <div className="error-state">
-            <div className="error-icon">⚠️</div>
-            <h2 className="error-heading">Oops! Something went wrong</h2>
+            <div className="error-icon">
+              {errorType === 'permission' ? '🔒' : '⚠️'}
+            </div>
+            <h2 className="error-heading">
+              {errorType === 'permission'
+                ? 'Access Denied'
+                : 'Oops! Something went wrong'}
+            </h2>
             <p className="error-subtext">{error}</p>
-            <button className="try-again-btn" onClick={loadRewards}>
-              Try Again
-            </button>
+            {errorType !== 'permission' && (
+              <button className="try-again-btn" onClick={loadRewards}>
+                Try Again
+              </button>
+            )}
           </div>
         ) : (
           <div className="rewards-content">

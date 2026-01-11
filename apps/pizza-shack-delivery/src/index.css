@@ -27,34 +27,34 @@
   --accent-mint: #E6F3EE;
   --accent-sky: #EAF5FF;
 
-  /* Fresh & Natural Neutral System */
-  --gray-50: #FFFFFF;
-  --gray-100: #F0F4F7;
-  --gray-200: #E6F3EE;
-  --gray-300: #EAF5FF;
-  --gray-400: #A8B5C1;
-  --gray-500: #7B8794;
-  --gray-600: #5A6B7A;
-  --gray-700: #3E4C5B;
-  --gray-800: #1E3A4B;
-  --gray-900: #2A4B3D;
+  /* Fresh & Natural Neutral System - Dark Theme */
+  --gray-50: #1e1e1e;
+  --gray-100: #2a2a2a;
+  --gray-200: #3a3a3a;
+  --gray-300: #4a4a4a;
+  --gray-400: #6a6a6a;
+  --gray-500: #8a8a8a;
+  --gray-600: #a0a0a0;
+  --gray-700: #b8b8b8;
+  --gray-800: #d0d0d0;
+  --gray-900: #e0e0e0;
 
   /* Pure Colors */
   --white: #FFFFFF;
   --black: #000000;
 
-  /* Semantic Colors */
-  --background-primary: var(--white);
-  --background-secondary: var(--gray-50);
-  --background-tertiary: var(--gray-100);
-  --background-glass: rgba(255, 255, 255, 0.9);
-  --background-glass-dark: rgba(230, 243, 238, 0.8);
+  /* Semantic Colors - Dark Theme */
+  --background-primary: #121212;
+  --background-secondary: #1e1e1e;
+  --background-tertiary: #2a2a2a;
+  --background-glass: rgba(30, 30, 30, 0.9);
+  --background-glass-dark: rgba(18, 18, 18, 0.8);
   --background-gradient: var(--primary);
   --background-hero: var(--primary);
 
-  --text-primary: #1E3A4B;
-  --text-secondary: #2A4B3D;
-  --text-muted: #5A6B7A;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
   --text-light: var(--white);
   --text-accent: var(--primary);
 
@@ -67,9 +67,9 @@
   --primary-orange: var(--primary);
   --primary-orange-hover: var(--primary-hover);
 
-  --border-light: var(--gray-200);
-  --border-medium: var(--gray-300);
-  --border-glass: rgba(255, 255, 255, 0.2);
+  --border-light: #2a2a2a;
+  --border-medium: #3a3a3a;
+  --border-glass: rgba(255, 255, 255, 0.1);
 
   /* Modern Shadows & Glass Effects */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -88,60 +88,35 @@
   --radius-full: 50%;
 
   /* Spacing System */
-  --space-1: 0.25rem;
-  /* 4px */
-  --space-2: 0.5rem;
-  /* 8px */
-  --space-3: 0.75rem;
-  /* 12px */
-  --space-4: 1rem;
-  /* 16px */
-  --space-5: 1.25rem;
-  /* 20px */
-  --space-6: 1.5rem;
-  /* 24px */
-  --space-8: 2rem;
-  /* 32px */
-  --space-10: 2.5rem;
-  /* 40px */
-  --space-12: 3rem;
-  /* 48px */
-  --space-16: 4rem;
-  /* 64px */
-  --space-20: 5rem;
-  /* 80px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem;  /* 24px */
+  --space-8: 2rem;    /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem;   /* 48px */
+  --space-16: 4rem;   /* 64px */
+  --space-20: 5rem;   /* 80px */
 
   /* Enhanced Typography Scale */
-  --text-xs: 0.75rem;
-  /* 12px */
-  --text-sm: 0.875rem;
-  /* 14px */
-  --text-base: 1rem;
-  /* 16px */
-  --text-lg: 1.125rem;
-  /* 18px */
-  --text-xl: 1.25rem;
-  /* 20px */
-  --text-2xl: 1.5rem;
-  /* 24px */
-  --text-3xl: 1.875rem;
-  /* 30px */
-  --text-4xl: 2.5rem;
-  /* 40px */
-  --text-5xl: 3.25rem;
-  /* 52px */
-  --text-6xl: 4rem;
-  /* 64px */
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --text-2xl: 1.5rem;   /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.5rem;   /* 40px */
+  --text-5xl: 3.25rem;  /* 52px */
+  --text-6xl: 4rem;     /* 64px */
 
   /* Price Typography */
-  --price-sm: 1.125rem;
-  /* 18px */
-  --price-md: 1.5rem;
-  /* 24px */
-  --price-lg: 2rem;
-  /* 32px */
-  --price-xl: 2.5rem;
-  /* 40px */
+  --price-sm: 1.125rem; /* 18px */
+  --price-md: 1.5rem;   /* 24px */
+  --price-lg: 2rem;     /* 32px */
+  --price-xl: 2.5rem;   /* 40px */
 
   /* Legacy Support */
   --primary-color: var(--primary);
@@ -156,8 +131,8 @@
   --blur-md: blur(8px);
   --blur-lg: blur(16px);
 
-  color: var(--text-primary);
-  background: var(--background-secondary);
+  color: #e0e0e0;
+  background: #121212;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -201,11 +176,9 @@ a {
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 a:hover {
   color: var(--primary-orange-hover);
 }
-
 a:focus {
   outline: 2px solid var(--primary-orange);
   outline-offset: 2px;
@@ -222,7 +195,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--gray-50);
+  background: #121212;
   line-height: 1.7;
   -webkit-text-size-adjust: 100%;
   font-feature-settings: 'liga' on, 'kern' on;
@@ -231,15 +204,10 @@ body {
 }
 
 /* Enhanced Typography Styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin: 0 0 var(--space-4) 0;
-  color: var(--text-primary);
+  color: #e0e0e0;
   font-feature-settings: 'liga' on, 'kern' on;
 }
 
@@ -247,14 +215,14 @@ h1 {
   font-size: var(--text-5xl);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
+  color: #e0e0e0;
 }
 
 h2 {
   font-size: var(--text-4xl);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--text-primary);
+  color: #e0e0e0;
 }
 
 h3 {
@@ -280,7 +248,7 @@ h6 {
 
 p {
   margin: 0 0 var(--space-4) 0;
-  color: var(--text-secondary);
+  color: #b0b0b0;
   line-height: 1.7;
 }
 
@@ -291,21 +259,10 @@ p {
   font-feature-settings: 'tnum' on;
 }
 
-.price-sm {
-  font-size: var(--price-sm);
-}
-
-.price-md {
-  font-size: var(--price-md);
-}
-
-.price-lg {
-  font-size: var(--price-lg);
-}
-
-.price-xl {
-  font-size: var(--price-xl);
-}
+.price-sm { font-size: var(--price-sm); }
+.price-md { font-size: var(--price-md); }
+.price-lg { font-size: var(--price-lg); }
+.price-xl { font-size: var(--price-xl); }
 
 /* Modern Button System with Glassmorphism */
 button {
@@ -350,8 +307,8 @@ button:focus-visible {
 }
 
 button:disabled {
-  background: var(--gray-300);
-  color: var(--gray-600);
+  background: #3a3a3a;
+  color: #808080;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -369,43 +326,43 @@ button:disabled {
 }
 
 .btn-secondary {
-  background: var(--background-glass);
-  color: var(--text-primary);
-  border: 1px solid var(--border-glass);
+  background: rgba(42, 42, 42, 0.9);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: var(--blur-md);
   box-shadow: var(--shadow-neu-light);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: var(--border-medium);
+  background: rgba(58, 58, 58, 0.9);
+  border-color: #3a3a3a;
   transform: translateY(-1px);
 }
 
 .btn-glass {
-  background: var(--background-glass);
-  color: var(--text-primary);
-  border: 1px solid var(--border-glass);
+  background: rgba(30, 30, 30, 0.9);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: var(--blur-md);
   box-shadow: var(--shadow-glass);
 }
 
 .btn-glass:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(42, 42, 42, 0.95);
   transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text-secondary);
+  color: #b0b0b0;
   box-shadow: none;
   backdrop-filter: none;
 }
 
 .btn-ghost:hover {
-  background: var(--background-glass);
-  color: var(--text-primary);
+  background: rgba(30, 30, 30, 0.9);
+  color: #e0e0e0;
   backdrop-filter: var(--blur-sm);
   box-shadow: var(--shadow-sm);
 }
@@ -515,7 +472,6 @@ button:disabled {
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground;
   }

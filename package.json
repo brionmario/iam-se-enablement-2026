@@ -1,8 +1,12 @@
 {
-  "name": "@org/source",
+  "name": "@pizza-shack/workspace",
   "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {},
+  "author": "WSO2",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "nx run-many --target=dev --parallel",
+    "build": "nx run-many --target=build --all"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
@@ -16,6 +20,7 @@
     "typescript": "~5.9.2"
   },
   "workspaces": [
+    "apps/*",
     "packages/*"
   ]
 }

@@ -13,28 +13,15 @@ export default function Header() {
     <header className="modern-header">
       <div className="header-content">
         <div className="header-logo" onClick={() => navigate('/')}>
-          <img src="/images/logo.png" alt="Unity Rewards Logo" />
+          <img src="/images/logo.png" alt="Pizza Shack Logo" />
+          <h1>Pizza Shack Delivery</h1>
         </div>
 
         <div className="header-actions">
           {/* User Actions */}
           <SignedIn>
             <div className="user-menu">
-              <UserDropdown
-                menuItems={[
-                  {
-                    onClick: () => {
-                      window.open(
-                        import.meta.env.VITE_PIZZA_SHACK_URL,
-                        '_blank',
-                        'noopener,noreferrer'
-                      );
-                    },
-                    icon: '🍕',
-                    label: 'Pizza Shack App',
-                  },
-                ]}
-              />
+              <UserDropdown />
             </div>
           </SignedIn>
 

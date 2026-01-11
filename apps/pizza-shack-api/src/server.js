@@ -1,16 +1,21 @@
+import 'dotenv/config';
 import app from './app.js';
 
 const PORT = process.env.PORT || 3000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const API_VERSION = process.env.API_VERSION || 'v1';
+const CORS_ORIGIN = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim())
+  : [];
 
 const server = app.listen(PORT, () => {
   console.log('╔════════════════════════════════════════════╗');
-  console.log('║      🍕 Pizza Shack API Server 🍕         ║');
+  console.log('║      🍕 Pizza Shack API Server 🍕          ║');
   console.log('╚════════════════════════════════════════════╝');
   console.log(`\n✓ Server running in ${NODE_ENV} mode`);
   console.log(`✓ Listening on port ${PORT}`);
   console.log(`✓ API version: ${API_VERSION}`);
+  console.log(`✓ CORS allowed origins: [${CORS_ORIGIN.join(', ') || 'None'}]`);
   console.log(`\n📍 Endpoints:`);
   console.log(
     `   - Health: http://localhost:${PORT}/api/${API_VERSION}/health`

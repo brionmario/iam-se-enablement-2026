@@ -1,5 +1,10 @@
 import { useNavigate } from 'react-router';
-import { SignedIn, SignedOut, SignInButton, UserDropdown } from '@asgardeo/react';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserDropdown,
+} from '@asgardeo/react';
 
 export default function Header({ getCartItemCount, setIsCartOpen }) {
   const navigate = useNavigate();
@@ -11,37 +16,43 @@ export default function Header({ getCartItemCount, setIsCartOpen }) {
           <img src="/images/logo.png" alt="Pizza Shack Logo" />
           <h1>Pizza Shack</h1>
         </div>
-        
+
         <div className="header-actions">
           {/* Cart Button - Always visible */}
           <div className="cart-wrapper">
-            <button 
-              className="cart-button"
-              onClick={() => setIsCartOpen(true)}
-            >
+            <button className="cart-button" onClick={() => setIsCartOpen(true)}>
               🛒 Cart
             </button>
             {getCartItemCount() > 0 && (
-              <span className="cart-counter">
-                {getCartItemCount()}
-              </span>
+              <span className="cart-counter">{getCartItemCount()}</span>
             )}
           </div>
 
           {/* User Actions */}
           <SignedIn>
             <div className="user-menu">
-              <UserDropdown />
+              <UserDropdown
+                menuItems={[
+                  {
+                    onClick: () => {
+                      window.open(
+                        import.meta.env.VITE_PIZZA_REWARDS_URL,
+                        '_blank',
+                        'noopener,noreferrer'
+                      );
+                    },
+                    icon: '🏆',
+                    label: 'Rewards App',
+                  },
+                ]}
+              />
             </div>
           </SignedIn>
-          
+
           <SignedOut>
             <SignInButton>
               {({ signIn }) => (
-                <button 
-                  className="login-button"
-                  onClick={signIn}
-                >
+                <button className="login-button" onClick={signIn}>
                   Sign In
                 </button>
               )}

@@ -2,7 +2,6 @@ export default function OrderConfirmationModal({
   isOpen,
   orderDetails,
   userInfo,
-  onClose,
 }) {
   if (!isOpen) return null;
 
@@ -37,43 +36,6 @@ export default function OrderConfirmationModal({
           animation: 'orderModalSlideIn 0.4s ease-out',
         }}
       >
-        {/* Close Button */}
-        {onClose && (
-          <button
-            onClick={onClose}
-            style={{
-              position: 'absolute',
-              top: '16px',
-              right: '16px',
-              background: '#f1f3f4',
-              border: 'none',
-              borderRadius: '50%',
-              width: '36px',
-              height: '36px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '1.3rem',
-              color: '#6c757d',
-              transition: 'all 0.2s ease',
-              zIndex: 10,
-              padding: 0,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#e9ecef';
-              e.currentTarget.style.color = '#2a4b3d';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#f1f3f4';
-              e.currentTarget.style.color = '#6c757d';
-            }}
-            aria-label="Close modal"
-          >
-            ✕
-          </button>
-        )}
-
         {/* Success Icon */}
         <div
           style={{
