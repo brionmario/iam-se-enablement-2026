@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useFeatureGate from '../contexts/FeatureGate/useFeatureGate';
 
 export default function OrderCard({
   order,
@@ -8,6 +9,7 @@ export default function OrderCard({
   showActions = true,
 }) {
   const [isUpdating, setIsUpdating] = useState(false);
+  const { hasFeature } = useFeatureGate();
 
   const getStatusColor = (status) => {
     const colors = {
@@ -57,6 +59,12 @@ export default function OrderCard({
   const canUpdateStatus =
     order.status !== 'delivered' && order.status !== 'cancelled';
   const nextStatus = getNextStatus(order.status);
+
+  // Check if user can only mark as delivered (riders)
+  const canOnlyMarkDelivered =
+    hasFeature('orders.markDelivered') && !hasFeature('orders.update');
+  const canMarkDelivered = order.status === 'out-for-delivery';
+  const showDeliveredButtonForRider = canOnlyMarkDelivered && canUpdateStatus;
 
   return (
     <div
@@ -208,64 +216,118 @@ export default function OrderCard({
 
       {showActions && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <button
-            onClick={() => onViewDetails(order)}
-            style={{
-              flex: 1,
-              minWidth: '120px',
-              padding: '0.625rem 1rem',
-              background: 'var(--bg-accent)',
-              color: 'var(--text-primary)',
-              border: '1px solid var(--border-medium)',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--bg-primary)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'var(--bg-accent)';
-            }}
-          >
-            View Details
-          </button>
-
-          {canUpdateStatus && nextStatus && (
+          {hasFeature('orders.view') && (
             <button
-              onClick={handleStatusUpdate}
-              disabled={isUpdating}
+              onClick={() => onViewDetails(order)}
               style={{
                 flex: 1,
                 minWidth: '120px',
                 padding: '0.625rem 1rem',
-                background: isUpdating ? '#4a4a4a' : 'var(--accent-green)',
+                background: 'var(--bg-accent)',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-medium)',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--bg-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--bg-accent)';
+              }}
+            >
+              View Details
+            </button>
+          )}
+
+          {/* For riders: show "Mark as Delivered" button (disabled until out-for-delivery) */}
+          {showDeliveredButtonForRider && (
+            <button
+              onClick={async () => {
+                setIsUpdating(true);
+                try {
+                  await onUpdateStatus(order.orderId, 'delivered');
+                } finally {
+                  setIsUpdating(false);
+                }
+              }}
+              disabled={isUpdating || !canMarkDelivered}
+              style={{
+                flex: 1,
+                minWidth: '120px',
+                padding: '0.625rem 1rem',
+                background:
+                  isUpdating || !canMarkDelivered
+                    ? '#4a4a4a'
+                    : 'var(--accent-green)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
                 fontSize: '0.875rem',
                 fontWeight: '500',
-                cursor: isUpdating ? 'not-allowed' : 'pointer',
+                cursor:
+                  isUpdating || !canMarkDelivered ? 'not-allowed' : 'pointer',
                 transition: 'all 0.2s',
-                textTransform: 'capitalize',
+                opacity: !canMarkDelivered ? 0.5 : 1,
               }}
               onMouseEnter={(e) => {
-                if (!isUpdating) e.currentTarget.style.background = '#5a9f67';
+                if (!isUpdating && canMarkDelivered)
+                  e.currentTarget.style.background = '#5a9f67';
               }}
               onMouseLeave={(e) => {
-                if (!isUpdating)
+                if (!isUpdating && canMarkDelivered)
                   e.currentTarget.style.background = 'var(--accent-green)';
               }}
+              title={
+                !canMarkDelivered
+                  ? 'Order must be out-for-delivery to mark as delivered'
+                  : ''
+              }
             >
-              {isUpdating
-                ? 'Updating...'
-                : `Mark as ${nextStatus.replace('-', ' ')}`}
+              {isUpdating ? 'Updating...' : 'Mark as Delivered'}
             </button>
           )}
 
-          {onDelete && (
+          {/* For dispatchers/admins: show progressive status update button */}
+          {!canOnlyMarkDelivered &&
+            hasFeature('orders.updateStatus') &&
+            canUpdateStatus &&
+            nextStatus && (
+              <button
+                onClick={handleStatusUpdate}
+                disabled={isUpdating}
+                style={{
+                  flex: 1,
+                  minWidth: '120px',
+                  padding: '0.625rem 1rem',
+                  background: isUpdating ? '#4a4a4a' : 'var(--accent-green)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  cursor: isUpdating ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.2s',
+                  textTransform: 'capitalize',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isUpdating) e.currentTarget.style.background = '#5a9f67';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isUpdating)
+                    e.currentTarget.style.background = 'var(--accent-green)';
+                }}
+              >
+                {isUpdating
+                  ? 'Updating...'
+                  : `Mark as ${nextStatus.replace('-', ' ')}`}
+              </button>
+            )}
+
+          {hasFeature('orders.delete') && onDelete && (
             <button
               onClick={() => {
                 if (

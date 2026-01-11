@@ -1,14 +1,34 @@
 import { useNavigate, useLocation } from 'react-router';
 import { SignedIn } from '@asgardeo/react';
+import useFeatureGate from '../contexts/FeatureGate/useFeatureGate';
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { hasFeature } = useFeatureGate();
 
   const menuItems = [
     {
       path: '/',
+      label: 'Orders',
+      feature: 'orders.view',
+      icon: (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+        </svg>
+      ),
+    },
+    {
+      path: '/menu',
       label: 'Menu',
+      feature: 'menu.view',
       icon: (
         <svg
           width="20"
@@ -25,23 +45,15 @@ export default function Sidebar() {
         </svg>
       ),
     },
-    {
-      path: '/orders',
-      label: 'Orders',
-      icon: (
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
-        </svg>
-      ),
-    },
   ];
+
+  // Filter menu items based on user permissions
+  const visibleMenuItems = menuItems.filter((item) => {
+    if (item.feature) {
+      return hasFeature(item.feature);
+    }
+    return true;
+  });
 
   const isActive = (path) => {
     return location.pathname === path;
@@ -111,7 +123,7 @@ export default function Sidebar() {
 
         {/* Navigation Menu */}
         <nav style={{ flex: 1, padding: '1rem 0.75rem' }}>
-          {menuItems.map((item) => (
+          {visibleMenuItems.map((item) => (
             <button
               key={item.path}
               onClick={() => navigate(item.path)}

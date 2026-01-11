@@ -181,7 +181,7 @@ export const updateOrderStatus = async (req, res, next) => {
       'confirmed',
       'preparing',
       'ready',
-      'delivering',
+      'out-for-delivery',
       'delivered',
       'cancelled',
     ];

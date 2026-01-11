@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 import {
   SignedIn,
   SignedOut,
@@ -8,18 +8,6 @@ import {
 
 export default function Header() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const getPageTitle = () => {
-    switch (location.pathname) {
-      case '/':
-        return 'Menu';
-      case '/orders':
-        return 'Orders Management';
-      default:
-        return 'Dashboard';
-    }
-  };
 
   return (
     <header
@@ -35,25 +23,10 @@ export default function Header() {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'right',
           alignItems: 'center',
         }}
       >
-        <SignedIn>
-          <div>
-            <h1
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: '700',
-                color: 'var(--text-primary)',
-                margin: 0,
-              }}
-            >
-              {getPageTitle()}
-            </h1>
-          </div>
-        </SignedIn>
-
         <SignedOut>
           <div className="header-logo" onClick={() => navigate('/')}>
             <img src="/images/logo.png" alt="Pizza Shack Logo" />

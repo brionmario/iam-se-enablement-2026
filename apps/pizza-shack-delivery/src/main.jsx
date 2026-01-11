@@ -11,7 +11,7 @@ ReactDOM.createRoot(root).render(
     <AsgardeoProvider
       clientId={import.meta.env.VITE_ASGARDEO_CLIENT_ID}
       baseUrl={import.meta.env.VITE_ASGARDEO_BASE_URL}
-      scopes="openid address profile pizza:create_order pizza:update_order pizza:delete_order pizza:read_order"
+      scopes="openid address profile roles pizza:create_order pizza:update_order pizza:delete_order pizza:read_order"
       preferences={{
         theme: {
           inheritFromBranding: false,
