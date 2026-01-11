@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import app from './app.js';
+import { seedDatabase } from './database/seed.js';
 
 const PORT = process.env.PORT || 3000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
@@ -7,6 +8,9 @@ const API_VERSION = process.env.API_VERSION || 'v1';
 const CORS_ORIGIN = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim())
   : [];
+
+// Seed database on startup (only if not already seeded)
+await seedDatabase();
 
 const server = app.listen(PORT, () => {
   console.log('╔════════════════════════════════════════════╗');

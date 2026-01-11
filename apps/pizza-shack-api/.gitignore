@@ -26,3 +26,6 @@ dist-ssr
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
+
+# Database files
+src/database/*.json

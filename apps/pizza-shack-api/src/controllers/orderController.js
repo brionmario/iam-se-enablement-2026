@@ -1,5 +1,12 @@
-import { orders, generateOrderId } from '../data/orders.js';
-import { pizzaMenu } from '../data/pizzas.js';
+import {
+  getOrders,
+  addOrder,
+  findOrderById,
+  updateOrder,
+  deleteOrderById,
+  generateOrderId,
+} from '../database/orders.js';
+import { findMenuItemById } from '../database/menu.js';
 import {
   calculateUnityPoints,
   awardUnityPoints,
@@ -9,7 +16,7 @@ import {
  * Create a new order
  * @route POST /api/v1/orders
  */
-export const createOrder = (req, res, next) => {
+export const createOrder = async (req, res, next) => {
   try {
     const { items, customerInfo, deliveryAddress } = req.body;
 
@@ -21,30 +28,31 @@ export const createOrder = (req, res, next) => {
     }
 
     // Validate each item exists in menu
-    const orderItems = items.map((item) => {
-      const pizza = pizzaMenu.find((p) => p.id === item.pizzaId);
+    const orderItems = [];
+    for (const item of items) {
+      const pizza = await findMenuItemById(item.pizzaId);
       if (!pizza) {
         const error = new Error(`Pizza with id ${item.pizzaId} not found`);
         error.statusCode = 404;
         throw error;
       }
 
-      return {
+      orderItems.push({
         pizzaId: item.pizzaId,
         name: pizza.name,
         quantity: item.quantity || 1,
         size: item.size || 'medium',
         price: pizza.price,
         subtotal: pizza.price * (item.quantity || 1),
-      };
-    });
+      });
+    }
 
     // Calculate total
     const total = orderItems.reduce((sum, item) => sum + item.subtotal, 0);
 
     // Create order
     const order = {
-      orderId: generateOrderId(),
+      orderId: await generateOrderId(),
       items: orderItems,
       customerInfo: customerInfo || {},
       deliveryAddress: deliveryAddress || {},
@@ -54,7 +62,7 @@ export const createOrder = (req, res, next) => {
       updatedAt: new Date().toISOString(),
     };
 
-    orders.push(order);
+    await addOrder(order);
 
     // Calculate and award Unity Rewards points
     const pointsCalculation = calculateUnityPoints(order.total);
@@ -66,7 +74,7 @@ export const createOrder = (req, res, next) => {
       customerInfo?.email ||
       customerInfo?.phone ||
       order.orderId;
-    const rewardsResult = awardUnityPoints(
+    const rewardsResult = await awardUnityPoints(
       userId,
       pointsCalculation.totalPoints,
       order.orderId
@@ -97,10 +105,11 @@ export const createOrder = (req, res, next) => {
  * Get all orders
  * @route GET /api/v1/orders
  */
-export const getAllOrders = (req, res, next) => {
+export const getAllOrders = async (req, res, next) => {
   try {
     const { status, limit = 50, offset = 0 } = req.query;
 
+    const orders = await getOrders();
     let filteredOrders = [...orders];
 
     // Filter by status if provided
@@ -138,10 +147,10 @@ export const getAllOrders = (req, res, next) => {
  * Get order by ID
  * @route GET /api/v1/orders/:orderId
  */
-export const getOrderById = (req, res, next) => {
+export const getOrderById = async (req, res, next) => {
   try {
     const { orderId } = req.params;
-    const order = orders.find((o) => o.orderId === orderId);
+    const order = await findOrderById(orderId);
 
     if (!order) {
       const error = new Error(`Order with id ${orderId} not found`);
@@ -162,7 +171,7 @@ export const getOrderById = (req, res, next) => {
  * Update order status
  * @route PATCH /api/v1/orders/:orderId/status
  */
-export const updateOrderStatus = (req, res, next) => {
+export const updateOrderStatus = async (req, res, next) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
@@ -185,7 +194,7 @@ export const updateOrderStatus = (req, res, next) => {
       throw error;
     }
 
-    const order = orders.find((o) => o.orderId === orderId);
+    const order = await findOrderById(orderId);
 
     if (!order) {
       const error = new Error(`Order with id ${orderId} not found`);
@@ -193,13 +202,15 @@ export const updateOrderStatus = (req, res, next) => {
       throw error;
     }
 
-    order.status = status;
-    order.updatedAt = new Date().toISOString();
+    const updatedOrder = await updateOrder(orderId, {
+      status,
+      updatedAt: new Date().toISOString(),
+    });
 
     res.status(200).json({
       success: true,
       message: 'Order status updated successfully',
-      data: order,
+      data: updatedOrder,
     });
   } catch (error) {
     next(error);
@@ -210,18 +221,16 @@ export const updateOrderStatus = (req, res, next) => {
  * Delete order
  * @route DELETE /api/v1/orders/:orderId
  */
-export const deleteOrder = (req, res, next) => {
+export const deleteOrder = async (req, res, next) => {
   try {
     const { orderId } = req.params;
-    const orderIndex = orders.findIndex((o) => o.orderId === orderId);
+    const deleted = await deleteOrderById(orderId);
 
-    if (orderIndex === -1) {
+    if (!deleted) {
       const error = new Error(`Order with id ${orderId} not found`);
       error.statusCode = 404;
       throw error;
     }
-
-    orders.splice(orderIndex, 1);
 
     res.status(200).json({
       success: true,

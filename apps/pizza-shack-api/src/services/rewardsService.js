@@ -1,15 +1,33 @@
+import { readData, writeData, initializeData } from '../database/storage.js';
+
 /**
  * Unity Rewards - Generic Loyalty Points System
  *
  * A universal rewards program that can be used across multiple applications.
  * Points are earned based on purchase amounts and can be redeemed for rewards.
  *
- * Note: This is a simplified in-memory implementation.
- * In production, use a proper database and consider creating a separate microservice.
+ * Note: This uses file-based storage for persistence.
+ * In production, consider using a proper database and creating a separate microservice.
  */
 
-// In-memory storage for user rewards (use database in production)
-const userRewards = new Map();
+const REWARDS_FILE = 'user_rewards.json';
+
+// Initialize rewards data file
+await initializeData(REWARDS_FILE, {});
+
+/**
+ * Get all user rewards data
+ */
+const getUserRewards = async () => {
+  return await readData(REWARDS_FILE, {});
+};
+
+/**
+ * Save user rewards data
+ */
+const saveUserRewards = async (rewards) => {
+  await writeData(REWARDS_FILE, rewards);
+};
 
 /**
  * Unity Rewards Configuration
@@ -72,9 +90,12 @@ export const calculateUnityPoints = (orderTotal) => {
  * @param {string} orderId - Reference order ID
  * @returns {Object} Updated user rewards profile
  */
-export const awardUnityPoints = (userId, points, orderId) => {
+export const awardUnityPoints = async (userId, points, orderId) => {
+  // Get all user rewards
+  const userRewards = await getUserRewards();
+
   // Get or create user rewards profile
-  let userProfile = userRewards.get(userId);
+  let userProfile = userRewards[userId];
 
   if (!userProfile) {
     // New user - create profile with welcome bonus
@@ -113,7 +134,8 @@ export const awardUnityPoints = (userId, points, orderId) => {
   userProfile.tier = calculateTier(userProfile.lifetimePoints);
 
   // Save updated profile
-  userRewards.set(userId, userProfile);
+  userRewards[userId] = userProfile;
+  await saveUserRewards(userRewards);
 
   return {
     userId: userProfile.userId,
@@ -142,14 +164,16 @@ const calculateTier = (lifetimePoints) => {
  * @param {string} userId - User identifier
  * @returns {Object|null} User rewards profile or null if not found
  */
-export const getUnityProfile = (userId) => {
-  const profile = userRewards.get(userId);
+export const getUnityProfile = async (userId) => {
+  const userRewards = await getUserRewards();
+  const profile = userRewards[userId];
   if (!profile) return null;
 
   // Mark as existing member after first retrieval
   if (profile.isNewMember) {
     profile.isNewMember = false;
-    userRewards.set(userId, profile);
+    userRewards[userId] = profile;
+    await saveUserRewards(userRewards);
   }
 
   return {
@@ -169,8 +193,9 @@ export const getUnityProfile = (userId) => {
  * @param {string} reason - Redemption reason/description
  * @returns {Object} Updated profile after redemption
  */
-export const redeemUnityPoints = (userId, points, reason) => {
-  const userProfile = userRewards.get(userId);
+export const redeemUnityPoints = async (userId, points, reason) => {
+  const userRewards = await getUserRewards();
+  const userProfile = userRewards[userId];
 
   if (!userProfile) {
     throw new Error('User not found in Unity Rewards program');
@@ -191,7 +216,8 @@ export const redeemUnityPoints = (userId, points, reason) => {
     description: reason,
   });
 
-  userRewards.set(userId, userProfile);
+  userRewards[userId] = userProfile;
+  await saveUserRewards(userRewards);
 
   return {
     userId: userProfile.userId,
@@ -206,8 +232,9 @@ export const redeemUnityPoints = (userId, points, reason) => {
  * Get all Unity Rewards members (for admin/loyalty app)
  * @returns {Array} List of all members
  */
-export const getAllUnityMembers = () => {
-  return Array.from(userRewards.values()).map((profile) => ({
+export const getAllUnityMembers = async () => {
+  const userRewards = await getUserRewards();
+  return Object.values(userRewards).map((profile) => ({
     userId: profile.userId,
     totalPoints: profile.totalPoints,
     lifetimePoints: profile.lifetimePoints,

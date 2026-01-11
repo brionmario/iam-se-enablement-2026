@@ -2,9 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 import {
   getRewardsProfile,
-  getAllMembers,
   redeemPoints,
-  getRewardsInfo,
 } from '../controllers/rewardsController.js';
 import { validate } from '../middleware/validation.js';
 import { authenticate, requireScopes } from '../middleware/auth.js';
@@ -24,18 +22,6 @@ router.get(
 );
 
 /**
- * @route   GET /api/v1/rewards/info
- * @desc    Get Unity Rewards program information
- * @access  Protected - Requires pizza:read_points scope
- */
-router.get(
-  '/info',
-  authenticate,
-  requireScopes('pizza:read_points'),
-  getRewardsInfo
-);
-
-/**
  * @route   GET /api/v1/rewards/profile/:userId
  * @desc    Get user's Unity Rewards profile
  * @access  Protected - Requires pizza:read_points scope
@@ -45,18 +31,6 @@ router.get(
   authenticate,
   requireScopes('pizza:read_points'),
   getRewardsProfile
-);
-
-/**
- * @route   GET /api/v1/rewards/members
- * @desc    Get all Unity Rewards members (Admin)
- * @access  Protected - Requires pizza:read_points scope
- */
-router.get(
-  '/members',
-  authenticate,
-  requireScopes('pizza:read_points'),
-  getAllMembers
 );
 
 /**
