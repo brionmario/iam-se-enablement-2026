@@ -88,35 +88,60 @@
   --radius-full: 50%;
 
   /* Spacing System */
-  --space-1: 0.25rem; /* 4px */
-  --space-2: 0.5rem;  /* 8px */
-  --space-3: 0.75rem; /* 12px */
-  --space-4: 1rem;    /* 16px */
-  --space-5: 1.25rem; /* 20px */
-  --space-6: 1.5rem;  /* 24px */
-  --space-8: 2rem;    /* 32px */
-  --space-10: 2.5rem; /* 40px */
-  --space-12: 3rem;   /* 48px */
-  --space-16: 4rem;   /* 64px */
-  --space-20: 5rem;   /* 80px */
+  --space-1: 0.25rem;
+  /* 4px */
+  --space-2: 0.5rem;
+  /* 8px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-5: 1.25rem;
+  /* 20px */
+  --space-6: 1.5rem;
+  /* 24px */
+  --space-8: 2rem;
+  /* 32px */
+  --space-10: 2.5rem;
+  /* 40px */
+  --space-12: 3rem;
+  /* 48px */
+  --space-16: 4rem;
+  /* 64px */
+  --space-20: 5rem;
+  /* 80px */
 
   /* Enhanced Typography Scale */
-  --text-xs: 0.75rem;   /* 12px */
-  --text-sm: 0.875rem;  /* 14px */
-  --text-base: 1rem;    /* 16px */
-  --text-lg: 1.125rem;  /* 18px */
-  --text-xl: 1.25rem;   /* 20px */
-  --text-2xl: 1.5rem;   /* 24px */
-  --text-3xl: 1.875rem; /* 30px */
-  --text-4xl: 2.5rem;   /* 40px */
-  --text-5xl: 3.25rem;  /* 52px */
-  --text-6xl: 4rem;     /* 64px */
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.5rem;
+  /* 40px */
+  --text-5xl: 3.25rem;
+  /* 52px */
+  --text-6xl: 4rem;
+  /* 64px */
 
   /* Price Typography */
-  --price-sm: 1.125rem; /* 18px */
-  --price-md: 1.5rem;   /* 24px */
-  --price-lg: 2rem;     /* 32px */
-  --price-xl: 2.5rem;   /* 40px */
+  --price-sm: 1.125rem;
+  /* 18px */
+  --price-md: 1.5rem;
+  /* 24px */
+  --price-lg: 2rem;
+  /* 32px */
+  --price-xl: 2.5rem;
+  /* 40px */
 
   /* Legacy Support */
   --primary-color: var(--primary);
@@ -176,9 +201,11 @@ a {
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 a:hover {
   color: var(--primary-orange-hover);
 }
+
 a:focus {
   outline: 2px solid var(--primary-orange);
   outline-offset: 2px;
@@ -204,7 +231,12 @@ body {
 }
 
 /* Enhanced Typography Styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2;
   margin: 0 0 var(--space-4) 0;
   color: #e0e0e0;
@@ -259,10 +291,21 @@ p {
   font-feature-settings: 'tnum' on;
 }
 
-.price-sm { font-size: var(--price-sm); }
-.price-md { font-size: var(--price-md); }
-.price-lg { font-size: var(--price-lg); }
-.price-xl { font-size: var(--price-xl); }
+.price-sm {
+  font-size: var(--price-sm);
+}
+
+.price-md {
+  font-size: var(--price-md);
+}
+
+.price-lg {
+  font-size: var(--price-lg);
+}
+
+.price-xl {
+  font-size: var(--price-xl);
+}
 
 /* Modern Button System with Glassmorphism */
 button {
@@ -472,6 +515,7 @@ button:disabled {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

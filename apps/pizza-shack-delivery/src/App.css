@@ -8,7 +8,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   line-height: 1.6;
@@ -29,56 +30,56 @@ html, body {
   --primary-tomato: #ff5722;
   --primary-tomato-hover: #ff7043;
   --primary-tomato-light: #ff8a65;
-  
+
   /* Secondary Colors - Basil Green */
   --accent-basil: #66bb6a;
   --accent-basil-light: #81c784;
   --accent-basil-dark: #4caf50;
-  
+
   /* Dark Theme Colors */
   --cream-primary: #121212;
   --cream-secondary: #1e1e1e;
   --cream-accent: #2a2a2a;
-  
+
   /* Background Colors */
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
   --bg-overlay: rgba(0, 0, 0, 0.75);
-  
+
   /* Text Colors */
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
   --text-muted: #808080;
   --text-white: #ffffff;
-  
+
   /* Button Colors */
   --btn-primary: #ff5722;
   --btn-primary-hover: #ff7043;
   --btn-secondary: #66bb6a;
   --btn-secondary-hover: #81c784;
-  
+
   /* Orange palette for CTAs */
   --primary-orange: #ff5722;
   --primary-orange-hover: #ff7043;
-  
+
   /* Green palette for accents */
   --accent-green: #66bb6a;
   --accent-green-light: #81c784;
-  
+
   /* Charcoal palette for standard buttons */
   --charcoal: #424242;
   --charcoal-hover: #616161;
-  
+
   /* Border Colors */
   --border-light: #2a2a2a;
   --border-medium: #3a3a3a;
-  
+
   /* Shadow */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
-  
+
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -89,7 +90,7 @@ html, body {
   --space-8: 2rem;
   --space-10: 2.5rem;
   --space-12: 3rem;
-  
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
@@ -112,12 +113,16 @@ html, body {
 .modern-header {
   display: flex;
   flex-direction: column;
-  position: sticky; /* Keeps the header at the top when scrolling */
+  position: sticky;
+  /* Keeps the header at the top when scrolling */
   top: 0;
   width: 100%;
-  background-color: #1e1e1e; /* Dark background */
-  z-index: 100; /* Ensures it stays on top of other content */
-  border-bottom: 2px solid #ff5722; /* The orange accent line */
+  background-color: #1e1e1e;
+  /* Dark background */
+  z-index: 100;
+  /* Ensures it stays on top of other content */
+  border-bottom: 2px solid #ff5722;
+  /* The orange accent line */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   padding: var(--space-5) var(--space-6);
   margin-bottom: 0;
@@ -322,12 +327,19 @@ html, body {
 
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-4px);
   }
+
   60% {
     transform: translateY(-2px);
   }
@@ -337,16 +349,21 @@ html, body {
 /* Main Content Container - Site-wide consistent wrapper */
 .main-content-container {
   width: 100%;
-  max-width: 1280px;  /* Sets the maximum width */
-  margin: 0 auto;     /* This is the key to CENTERING the content */
-  padding: var(--space-8) var(--space-6); /* Better spacing using CSS variables */
+  max-width: 1280px;
+  /* Sets the maximum width */
+  margin: 0 auto;
+  /* This is the key to CENTERING the content */
+  padding: var(--space-8) var(--space-6);
+  /* Better spacing using CSS variables */
   position: relative;
 }
 
 /* Orders view specific adjustments */
 .main-content-container.orders-view {
-  padding-top: 6rem; /* Increased top padding to clear sticky header */
-  margin-top: 0; /* Remove margin-top to prevent double spacing */
+  padding-top: 6rem;
+  /* Increased top padding to clear sticky header */
+  margin-top: 0;
+  /* Remove margin-top to prevent double spacing */
 }
 
 /* Main Content */
@@ -358,7 +375,8 @@ html, body {
 }
 
 .menu-section-header {
-  padding-top: var(--space-4); /* reduced padding since banner has margin-bottom */
+  padding-top: var(--space-4);
+  /* reduced padding since banner has margin-bottom */
   margin-bottom: var(--space-8);
 }
 
@@ -449,12 +467,15 @@ html, body {
 /* Pizza Card */
 .pizza-card {
   display: flex;
-  flex-direction: column; /* This stacks the items vertically */
-  justify-content: space-between; /* Pushes the actions to the bottom */
+  flex-direction: column;
+  /* This stacks the items vertically */
+  justify-content: space-between;
+  /* Pushes the actions to the bottom */
   background-color: var(--bg-secondary);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  overflow: hidden; /* Ensures the image corners are rounded */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  /* Ensures the image corners are rounded */
   transition: all 0.3s ease;
   border: 1px solid var(--border-light);
   position: relative;
@@ -834,8 +855,10 @@ html, body {
 .ai-fab-container {
   position: fixed;
   bottom: 24px;
-  right: 24px; /* This brings it back to the bottom-right */
-  z-index: 101; /* Ensures it's above the content */
+  right: 24px;
+  /* This brings it back to the bottom-right */
+  z-index: 101;
+  /* Ensures it's above the content */
 }
 
 .chat-fab {
@@ -937,10 +960,13 @@ html, body {
 
 /* Animations */
 @keyframes fabPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: var(--shadow-lg);
   }
+
   50% {
     transform: scale(1.05);
     box-shadow: 0 8px 30px rgba(42, 75, 61, 0.4);
@@ -953,6 +979,7 @@ html, body {
     visibility: hidden;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     visibility: visible;
@@ -966,6 +993,7 @@ html, body {
     visibility: visible;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     visibility: hidden;
@@ -974,10 +1002,13 @@ html, body {
 }
 
 @keyframes shimmer {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 0.9;
@@ -989,6 +1020,7 @@ html, body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1000,6 +1032,7 @@ html, body {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -1066,35 +1099,35 @@ html, body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  
+
   .menu-page-title {
     font-size: 2rem;
   }
-  
+
   .menu-subtitle {
     font-size: 1rem;
   }
-  
+
   .ai-fab-container {
     bottom: var(--space-4);
     right: var(--space-4);
   }
-  
+
   .chat-fab {
     width: 56px;
     height: 56px;
     font-size: 1.25rem;
   }
-  
+
   .ai-fab-tooltip {
     bottom: 65px;
     font-size: 0.8rem;
   }
-  
+
   .cart-drawer {
     width: 100vw;
   }
-  
+
   .chat-window {
     width: calc(100vw - 2rem);
     right: 1rem;
@@ -1103,16 +1136,16 @@ html, body {
     height: 65vh;
     max-height: 65vh;
   }
-  
+
   .main-content {
     padding: var(--space-6) var(--space-4);
   }
-  
+
   .header-actions {
     gap: var(--space-3);
     z-index: 15;
   }
-  
+
   .cart-counter {
     width: 22px;
     height: 22px;
@@ -1120,11 +1153,11 @@ html, body {
     top: -8px;
     right: -8px;
   }
-  
+
   .pizza-card {
     box-shadow: var(--shadow-md);
   }
-  
+
   .pizza-content {
     padding: var(--space-5);
   }
@@ -1165,30 +1198,30 @@ html, body {
     padding: 0 var(--space-3);
     width: 95%;
   }
-  
-  
+
+
   .menu-page-title {
     font-size: 1.75rem;
   }
-  
+
   .pizza-content {
     padding: var(--space-4);
   }
-  
+
   .pizza-title {
     font-size: 1.25rem;
   }
-  
+
   .favorite-ribbon {
     font-size: 0.7rem;
     padding: var(--space-1) var(--space-3);
   }
-  
+
   .ai-fab-container {
     bottom: var(--space-3);
     right: var(--space-3);
   }
-  
+
   .chat-fab {
     width: 52px;
     height: 52px;
@@ -1242,9 +1275,11 @@ textarea:focus {
   border: 1px solid var(--border-light);
   overflow: hidden;
   animation: fadeInUp 0.6s ease-out;
-  margin-top: 0; /* Remove margin as container now handles spacing */
+  margin-top: 0;
+  /* Remove margin as container now handles spacing */
   position: relative;
-  z-index: 1; /* Ensure it's below header but above background */
+  z-index: 1;
+  /* Ensure it's below header but above background */
 }
 
 .orders-content-area {
@@ -1255,7 +1290,8 @@ textarea:focus {
   padding-top: var(--space-4);
   margin-bottom: var(--space-6);
   position: flex;
-  z-index: 10; /* Ensure back button is above other content */
+  z-index: 10;
+  /* Ensure back button is above other content */
 }
 
 .back-to-menu-btn {
@@ -1411,7 +1447,8 @@ textarea:focus {
 .orders-grid {
   display: grid;
   gap: var(--space-6);
-  margin-top: var(--space-4); /* Ensure proper spacing from filter buttons */
+  margin-top: var(--space-4);
+  /* Ensure proper spacing from filter buttons */
 }
 
 .order-card {
@@ -1598,38 +1635,38 @@ textarea:focus {
   .orders-content-area {
     padding: var(--space-6) var(--space-4);
   }
-  
+
   .orders-header {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-4);
   }
-  
+
   .filter-buttons {
     width: 100%;
     justify-content: center;
   }
-  
+
   .order-header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
   }
-  
+
   .creator-badge {
     align-self: flex-start;
   }
-  
+
   .order-summary {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
   }
-  
+
   .status-section {
     width: 100%;
   }
-  
+
   .order-total {
     align-self: flex-end;
     font-size: 1.25rem;
@@ -1641,26 +1678,26 @@ textarea:focus {
     font-size: 0.9rem;
     padding: var(--space-2) var(--space-4);
   }
-  
+
   .filter-btn {
     font-size: 0.8rem;
     padding: var(--space-2) var(--space-4);
   }
-  
+
   .order-card {
     padding: var(--space-5);
   }
-  
+
   .order-title {
     font-size: 1.25rem;
   }
-  
+
   .item-card {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
   }
-  
+
   .item-price {
     align-self: flex-end;
     font-size: 1rem;
@@ -1685,10 +1722,13 @@ textarea:focus {
 ────────────────────────────*/
 .promo-banner {
   width: 100%;
-  padding: var(--space-4) 0; /* reduced padding for better spacing */
-  margin-bottom: var(--space-6); /* add space below banner */
-  background: transparent; /* ensure no background conflicts */
-  
+  padding: var(--space-4) 0;
+  /* reduced padding for better spacing */
+  margin-bottom: var(--space-6);
+  /* add space below banner */
+  background: transparent;
+  /* ensure no background conflicts */
+
   /* always visible */
   display: block !important;
   opacity: 1 !important;
@@ -1720,7 +1760,7 @@ textarea:focus {
 .promo-text {
   font-size: 1.125rem;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.02em;
 }
 
@@ -1895,6 +1935,7 @@ textarea:focus {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -1903,19 +1944,20 @@ textarea:focus {
 /* Responsive Design Updates */
 @media (max-width: 768px) {
   .main-content-container.orders-view {
-    padding-top: 5rem; /* Slightly less padding on mobile */
+    padding-top: 5rem;
+    /* Slightly less padding on mobile */
   }
-  
+
   .orders-page-title {
     font-size: 2rem;
   }
-  
+
   .order-header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-4);
   }
-  
+
   .order-summary-info {
     text-align: left;
     width: 100%;
@@ -1923,7 +1965,7 @@ textarea:focus {
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .order-total-header {
     font-size: 1.5rem;
   }
@@ -1931,28 +1973,29 @@ textarea:focus {
 
 @media (max-width: 480px) {
   .main-content-container.orders-view {
-    padding-top: 4.5rem; /* Even less padding on small mobile */
+    padding-top: 4.5rem;
+    /* Even less padding on small mobile */
     padding-left: var(--space-4);
     padding-right: var(--space-4);
   }
-  
+
   .orders-page-title {
     font-size: 1.75rem;
     margin: var(--space-4) 0 var(--space-6);
   }
-  
+
   .item-row {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
     padding: var(--space-3) 0;
   }
-  
+
   .item-price {
     align-self: flex-end;
     margin-top: var(--space-2);
   }
-  
+
   .order-total-header {
     font-size: 1.25rem;
   }
@@ -1983,24 +2026,27 @@ textarea:focus {
   color: var(--text-secondary);
 }
 
-.asgardeo-button.asgardeo-button__solid.asgardeo-button__secondary, .asgardeo-button.asgardeo-button__solid.asgardeo-button__primary {
-    border-radius: var(--radius-md);
+.asgardeo-button.asgardeo-button__solid.asgardeo-button__secondary,
+.asgardeo-button.asgardeo-button__solid.asgardeo-button__primary {
+  border-radius: var(--radius-md);
 }
 
 .asgardeo-button.asgardeo-button__solid.asgardeo-button__secondary {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-medium);
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
 .asgardeo-button.asgardeo-button__solid.asgardeo-button__secondary:hover {
-    background-color: var(--charcoal);
+  background-color: var(--charcoal);
 }
 
-.asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item, .asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item:hover, .asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item:focus{
+.asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item,
+.asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item:hover,
+.asgardeo-user-dropdown__menu .asgardeo-user-dropdown__menu-item:focus {
   box-shadow: none;
   transform: none;
   outline: none;
