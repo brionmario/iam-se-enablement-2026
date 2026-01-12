@@ -1,104 +1,79 @@
-# New Nx Repository
+# IAM SE Enablement 2026 - B2C Workshop
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This repository contains the code for the IAM SE Enablement 2026 workshop focused on B2C scenarios using [WSO2 Identity Server](https://wso2.com/identity-server/).
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Try Out
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### Setup the Repository
 
-## Generate a library
+1. Fork https://github.com/brionmario/iam-se-enablement-2026.git
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+2. Install Dependencies
+
+```bash
+npm install
 ```
 
-## Run tasks
+3. Build the repository
 
-To build the library use:
-
-```sh
-npx nx build pkg1
+```bash
+npm run build
 ```
 
-To run any task with Nx use:
+### Setup Pizza Shack
 
-```sh
-npx nx <target> <project-name>
+```bash
+cd apps/pizza-shack
+cp .env.example .env
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+Update the `VITE_ASGARDEO_CLIENT_ID` placeholder with the client ID obtained from the application created in the guide.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
+```bash
+npm run dev
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+The application will start to run on [http://localhost:5173](http://localhost:5173)
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Setup Unity Rewards
 
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
+```bash
+cd apps/unity-rewards
+cp .env.example .env
 ```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+Update the `VITE_ASGARDEO_CLIENT_ID` placeholder with the client ID obtained from the application created in the guide.
 
-```sh
-npx nx sync:check
+```bash
+npm run dev
 ```
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+The application will start to run on [http://localhost:5174](http://localhost:5174)
 
-## Nx Cloud
+### Setup Pizza Shack Delivery Hub
 
-Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Set up CI (non-Github Actions CI)
-
-**Note:** This is only required if your CI provider is not GitHub Actions.
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+```bash
+cd apps/pizza-shack-delivery
+cp .env.example .env
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Update the `VITE_ASGARDEO_CLIENT_ID` placeholder with the client ID obtained from the application created in the guide.
 
-## Install Nx Console
+```bash
+npm run dev
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+The application will start to run on [http://localhost:5175](http://localhost:5175)
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Setup Pizza Shack API
 
-## Useful links
+```bash
+cd apps/pizza-shack-api
+cp .env.example .env
+```
 
-Learn more:
+```bash
+npm run dev
+```
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+The API will start to run on [http://localhost:3000](http://localhost:3000)
