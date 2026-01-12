@@ -53,7 +53,7 @@ The application will start to run on [http://localhost:5174](http://localhost:51
 ### Setup Pizza Shack Delivery Hub
 
 ```bash
-cd apps/pizza-shack-delivery
+cd apps/pizza-shack-delivery-hub
 cp .env.example .env
 ```
 
