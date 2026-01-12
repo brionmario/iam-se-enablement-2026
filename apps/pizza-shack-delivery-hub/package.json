@@ -13,8 +13,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@asgardeo/react": "^0.6.29",
-    "@asgardeo/react-router": "^1.0.29",
+    "@asgardeo/react": "^0.6.30",
+    "@asgardeo/react-router": "^1.0.30",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@wso2/oxygen-ui": "0.0.1-alpha.10",

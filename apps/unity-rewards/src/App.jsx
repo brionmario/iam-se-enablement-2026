@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router';
-import { SignedIn, useAsgardeo } from '@asgardeo/react';
+import { useAsgardeo } from '@asgardeo/react';
+import { ProtectedRoute } from '@asgardeo/react-router';
 import Preloader from './components/Preloader';
 import MainLayout from './layouts/MainLayout';
 import RewardsPage from './pages/RewardsPage';
 import './App.css';
 
 function App() {
-  const { signIn, isLoading } = useAsgardeo();
+  const { isLoading } = useAsgardeo();
 
   if (isLoading) {
     return (
@@ -29,9 +30,16 @@ function App() {
 
   return (
     <div className="modern-app">
-      <MainLayout signIn={signIn}>
+      <MainLayout>
         <Routes>
-          <Route path="/" element={<RewardsPage />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <RewardsPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MainLayout>
     </div>
