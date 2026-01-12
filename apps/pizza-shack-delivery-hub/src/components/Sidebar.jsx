@@ -111,7 +111,7 @@ export default function Sidebar() {
               <p
                 style={{
                   fontSize: '0.75rem',
-                  color: 'var(--text-muted)',
+                  color: '#f00',
                   margin: 0,
                 }}
               >

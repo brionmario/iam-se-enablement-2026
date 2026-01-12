@@ -1,5 +1,6 @@
 {
-  "name": "@pizza-shack/pizza-shack-delivery",
+  "name": "@pizza-shack/pizza-shack-delivery-hub",
+  "description": "Application to handle Pizza Shack Delivery operations",
   "private": true,
   "version": "0.0.0",
   "type": "module",
